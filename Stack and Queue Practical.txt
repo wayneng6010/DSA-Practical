@@ -1,0 +1,103 @@
+// StackPractical.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+
+using namespace std;
+
+// Create a node structure
+struct node {
+	int data;
+	struct node *link; //self-referential	
+};
+
+// Create a class STACK that contains push,
+// and pop function.
+class stack {
+public:
+	void push(struct node*Top, int); //insert
+	void pop(struct node*top, int item); //delete
+};
+
+//create a class QUEUE that contain append and serve function
+class queue {
+	void append(); //insert
+	void serve(); //delete
+};
+
+// Stack - Push function/operation
+void stack::push(struct node*Top, int value) {
+	struct node *newnode; //can declare typedef
+
+	//step 1: memory allocation
+	newnode = (struct node*)malloc(sizeof(struct node));
+
+	//step 2: allocate value into data
+	newnode->data = value;
+
+	//step 3:make newnode point to top
+	newnode->link = Top;
+
+	//step 4:assign new node to Top
+	Top = newnode;
+
+}
+
+//Stack - POP operation
+void stack::pop(struct node*top, int item) {
+	struct node* temp;
+	//check if the stack is empty
+	if (top == NULL) {
+		cout << "Stack is empty";
+	}
+	else {
+		//1. Assign the item to data
+		item = top->data;
+
+		//2. Assign the temp to top
+		temp = top;
+
+		//3. Move the top to the next node
+		top = top->link;
+
+		//4. Delete/remove temp
+		free(temp);
+	}
+ }
+
+// create a function for Queue - APPEND
+void queue::append() {
+	//1. memory allocation
+	//2. allocate value to newnode
+	//3. Make sure the new node doesn't become losing node
+	//4. Make tail link to newnode
+	//5. Make tail to newnode
+}
+
+//create a function for Queue - SERVE
+void queue::serve() {
+	//1. Check if the queue is empty
+	//2. If it is not empty, allocate data to item
+	//3. Make temp points to head/top
+	//4. Move head/top to the next node
+	//5. Remove temp
+}
+
+int main()
+{
+	stack s; //create a variable that refer to class stack
+	// create a new variable for structure node to point to Top
+	node *head = new node; 
+	s.push(head, 20);
+}
+
+// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
+// Debug program: F5 or Debug > Start Debugging menu
+
+// Tips for Getting Started: 
+//   1. Use the Solution Explorer window to add/manage files
+//   2. Use the Team Explorer window to connect to source control
+//   3. Use the Output window to see build output and other messages
+//   4. Use the Error List window to view errors
+//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
